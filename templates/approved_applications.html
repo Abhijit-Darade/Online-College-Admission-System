@@ -1,0 +1,48 @@
+{% extends 'admin.html' %}
+
+{% block title %} Approved Applications {% endblock %}
+{% block approved %} active {% endblock %}
+
+{% block css %}
+    <style>
+        h1{
+            text-align: center;
+            color: #094a89;
+        }
+        table{
+            border-collapse: collapse;
+            width: 100%;
+            text-align: center;
+            font-size: 20px;
+        }
+        th{
+            background-color: #094a89;
+            color: white;
+        }
+        th, td{
+            border: 2px solid #ddd;
+        }
+    </style>
+    {% endblock %}
+    {% block body %}
+    <h1 class="mt-4">All Approved Applications List</h1>
+    <div class="users-table mt-4">
+    <table>
+        <tbody>
+            <tr>
+                <th>Username</th>
+                <th>Full Name</th>
+                <th>Email ID</th>
+                <th>Application</th>
+            </tr>
+            {% for i in approved %}
+            <tr>
+                <td>{{i.user}}</td>
+                <td>{{i.name}}</td>
+                <td>{{i.email}}</td>
+                <td><a href="/student_application/{{i.id}}/" class="btn btn-warning">View Application</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endblock %}

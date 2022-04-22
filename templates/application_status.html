@@ -1,0 +1,13 @@
+{% extends 'admin.html' %}
+
+{% block title %} {{application.name}} {% endblock %}
+{% block css %}
+{% endblock %}
+{% block body %}
+    <form enctype="multipart/form-data" method="POST"> {% csrf_token %}
+        <div class="container mt-3">
+       {{ form.as_p }}
+            <button type="submit" class="btn btn-success" style="width: 8rem;">Update Status</button>
+        </div>
+    </form>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'basic.html' %}
+
+{% block title %} Admission System {% endblock %}
+{% block css %}
+{% endblock %}
+{% block body %}
+<form action="/edit_application/" enctype="multipart/form-data" method="POST"> {% csrf_token %}
+    <div class="container mt-3">
+   {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Update</button>
+    </div>
+</form>
+{% endblock %}
+{% block js %}
+<script>
+    {% if alert %}
+    alert("Application updated successfully.")
+    window.location = "/application_form"
+    {% endif %}
+</script>
+{% endblock %}
+

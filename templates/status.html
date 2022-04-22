@@ -1,0 +1,15 @@
+{% extends 'basic.html' %}
+
+{% block title %} Application Status {% endblock %}
+{% block status %} active {% endblock %}
+
+{% block css %}
+{% endblock %}
+{% block body %}
+<div class="container w-50 mt-4 shadow">
+    <h3>Your application is {{application.Application_Status}}</h3>
+    <br>
+    <h5>{{application.message}}</h5>
+</div>
+
+{% endblock %}

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> 
+
+    <title>{% block title %}{% endblock %}</title>
+    <style>
+      .navbar{
+        background-color: #094a89;;
+      }
+    </style>
+    {% block css %} 
+    {% endblock %}
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Vidyalankar Institute Of Technology</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <div class="container w-75">
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link {% block home %} {% endblock %}" aria-current="page" href="/"><i class="fa fa-home"></i> Home</a>
+              </li>
+              &nbsp;&nbsp;&nbsp;
+              {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link {% block application_form %} {% endblock %}" href="/application_form/"><i class="fa fa-address-book"></i> Application Form </a>
+              </li>
+              {% comment %} <li class="nav-item">
+                <a class="nav-link {% block status %} {% endblock %}" href="/status/"><i class="fa fa-ban"></i> Application Status</a>
+              </li> {% endcomment %}
+            </ul>
+          </div>
+          </div>
+          <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+            <ul class="navbar-nav">
+              <li class="nav-item dropdown">
+                <a class="nav-link active dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa fa-user-plus"></i>  Welcome {{request.user.get_full_name}}
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+                  {% if user.is_superuser %}
+                  <li><a class="dropdown-item" href="/handle_admin/">Admin</a></li>
+                  {% endif %}
+                  <li><a class="dropdown-item" href="/logout/">Logout</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link {% block register %} {% endblock %}" href="/register/"><i class="fa fa-cash-register"></i> Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link  {% block login %} {% endblock %}" href="/login/"><i class="fa fa-sign-in-alt"></i> Login</a>
+          </li>
+          {% endif %}
+        </div>
+      </nav>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    {% block body %}
+    {% endblock %}
+  </body>
+  {% block js %}
+  {% endblock %}
+</html>
